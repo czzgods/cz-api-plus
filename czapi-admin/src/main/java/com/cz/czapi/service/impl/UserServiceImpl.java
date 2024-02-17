@@ -4,11 +4,13 @@ import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.cz.czapi.common.ErrorCode;
+
 import com.cz.czapi.exception.BusinessException;
 import com.cz.czapi.mapper.UserMapper;
-import com.cz.czapi.model.entity.User;
+
 import com.cz.czapi.service.UserService;
+import com.cz.czapicommon.common.ErrorCode;
+import com.cz.czapicommon.model.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -17,8 +19,8 @@ import org.springframework.util.DigestUtils;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import static com.cz.czapi.constant.UserConstant.ADMIN_ROLE;
-import static com.cz.czapi.constant.UserConstant.USER_LOGIN_STATE;
+import static com.cz.czapicommon.constant.UserConstant.ADMIN_ROLE;
+import static com.cz.czapicommon.constant.UserConstant.USER_LOGIN_STATE;
 
 
 /**
@@ -163,6 +165,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         // 移除登录态
         request.getSession().removeAttribute(USER_LOGIN_STATE);
         return true;
+    }
+
+    @Override
+    public boolean updateSecretKey(Long id) {
+        User user = this.getById(id);
+        String accessKey = DigestUtil.md5Hex(SALT + user.getUserAccount() + RandomUtil.randomNumbers(5));
+        String secretKey = DigestUtil.md5Hex(SALT + user.getUserAccount() + RandomUtil.randomNumbers(8));
+        user.setAccessKey(accessKey);
+        user.setSecretKey(secretKey);
+        return this.updateById(user);
     }
 
 }

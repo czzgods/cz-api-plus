@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="czapi-admin" />
+        <module name="czapi-common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
@@ -16,6 +17,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="czapi-admin" options="-parameters" />
+      <module name="czapi-common" options="-parameters" />
     </option>
   </component>
 </project>

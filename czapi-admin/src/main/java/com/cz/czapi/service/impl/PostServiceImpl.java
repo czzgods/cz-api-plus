@@ -1,13 +1,13 @@
 package com.cz.czapi.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.cz.czapi.common.ErrorCode;
 import com.cz.czapi.exception.BusinessException;
 import com.cz.czapi.mapper.PostMapper;
-import com.cz.czapi.model.entity.Post;
-import com.cz.czapi.model.enums.PostGenderEnum;
-import com.cz.czapi.model.enums.PostReviewStatusEnum;
 import com.cz.czapi.service.PostService;
+import com.cz.czapicommon.common.ErrorCode;
+import com.cz.czapicommon.model.entity.Post;
+import com.cz.czapicommon.model.enums.PostGenderEnum;
+import com.cz.czapicommon.model.enums.PostReviewStatusEnum;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;

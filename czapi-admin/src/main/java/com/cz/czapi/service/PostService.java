@@ -1,7 +1,8 @@
 package com.cz.czapi.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.cz.czapi.model.entity.Post;
+import com.cz.czapicommon.model.entity.Post;
+
 
 /**
  * @author yupili

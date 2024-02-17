@@ -1,9 +1,9 @@
 package com.cz.czapi.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.cz.czapi.model.entity.UserInterfaceInfo;
 import com.cz.czapi.service.UserInterfaceInfoService;
 import com.cz.czapi.mapper.UserInterfaceInfoMapper;
+import com.cz.czapicommon.model.entity.UserInterfaceInfo;
 import org.springframework.stereotype.Service;
 
 /**

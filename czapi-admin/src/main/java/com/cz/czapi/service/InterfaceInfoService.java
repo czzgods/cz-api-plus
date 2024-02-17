@@ -1,7 +1,8 @@
 package com.cz.czapi.service;
 
-import com.cz.czapi.model.entity.InterfaceInfo;
+
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.cz.czapicommon.model.entity.InterfaceInfo;
 
 /**
 * @author 李钟意

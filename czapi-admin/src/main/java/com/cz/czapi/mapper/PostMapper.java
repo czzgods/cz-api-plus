@@ -1,7 +1,7 @@
 package com.cz.czapi.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.cz.czapi.model.entity.Post;
+import com.cz.czapicommon.model.entity.Post;
 
 /**
 * @author yupili

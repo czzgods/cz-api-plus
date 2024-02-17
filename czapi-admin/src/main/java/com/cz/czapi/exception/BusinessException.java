@@ -1,6 +1,7 @@
 package com.cz.czapi.exception;
 
-import com.cz.czapi.common.ErrorCode;
+
+import com.cz.czapicommon.common.ErrorCode;
 
 /**
  * 自定义异常类

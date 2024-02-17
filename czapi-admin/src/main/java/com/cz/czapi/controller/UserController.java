@@ -3,15 +3,12 @@ package com.cz.czapi.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
-import com.cz.czapi.common.BaseResponse;
-import com.cz.czapi.common.DeleteRequest;
-import com.cz.czapi.common.ErrorCode;
-import com.cz.czapi.common.ResultUtils;
 import com.cz.czapi.exception.BusinessException;
-import com.cz.czapi.model.dto.user.*;
-import com.cz.czapi.model.entity.User;
-import com.cz.czapi.model.vo.UserVO;
 import com.cz.czapi.service.UserService;
+import com.cz.czapicommon.common.*;
+import com.cz.czapicommon.model.dto.user.*;
+import com.cz.czapicommon.model.entity.User;
+import com.cz.czapicommon.model.vo.UserVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
@@ -235,6 +232,46 @@ public class UserController {
         return ResultUtils.success(userVOPage);
     }
     // endregion
-   /* @PostMapping("/update/my")
-    public BaseResponse<Boolean> updateMyUser(@RequestBody )*/
+
+    /**
+     * 更新个人信息
+     * @param userUpdateMyRequest
+     * @param request
+     * @return
+     */
+    @PostMapping("/update/my")
+    public BaseResponse<Boolean> updateMyUser(@RequestBody UserUpdateMyRequest userUpdateMyRequest,
+                                              HttpServletRequest request){
+        if(userUpdateMyRequest == null){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User loginUser = userService.getLoginUser(request);
+        User user = new User();
+        BeanUtils.copyProperties(userUpdateMyRequest,user);
+        user.setId(loginUser.getId());
+        boolean result = userService.updateById(user);
+        if(!result){
+            throw new BusinessException(ErrorCode.OPERATION_ERROR);
+        }
+        return ResultUtils.success(true);
+    }
+
+    /**
+     * 更新用户的ak/sk
+     * @param idRequest
+     * @param request
+     * @return
+     */
+    @PostMapping("/update/secret_key")
+    public BaseResponse<Boolean> updateSecretKey(@RequestBody IdRequest idRequest,
+                                                 HttpServletRequest request){
+        if(idRequest == null || idRequest.getId() <= 0){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        boolean result = userService.updateSecretKey(idRequest.getId());
+        if(!result){
+            throw new BusinessException(ErrorCode.OPERATION_ERROR);
+        }
+        return ResultUtils.success(true);
+    }
 }

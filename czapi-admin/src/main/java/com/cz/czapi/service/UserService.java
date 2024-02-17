@@ -2,7 +2,7 @@ package com.cz.czapi.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.cz.czapi.model.entity.User;
+import com.cz.czapicommon.model.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -56,4 +56,11 @@ public interface UserService extends IService<User> {
      * @return
      */
     boolean userLogout(HttpServletRequest request);
+
+    /**
+     * 更新用户的ak/sk
+     * @param id
+     * @return
+     */
+    boolean updateSecretKey(Long id);
 }

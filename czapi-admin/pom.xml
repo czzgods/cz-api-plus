@@ -19,7 +19,10 @@
         <!--czApi SDK-->
 
         <!--czApi common-->
-
+        <dependency>
+            <groupId>com.cz</groupId>
+            <artifactId>czapi-common</artifactId>
+        </dependency>
         <!-- SpringBoot Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -1,7 +1,7 @@
 package com.cz.czapi.mapper;
 
-import com.cz.czapi.model.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.cz.czapicommon.model.entity.User;
 
 /**
 * @author 李钟意

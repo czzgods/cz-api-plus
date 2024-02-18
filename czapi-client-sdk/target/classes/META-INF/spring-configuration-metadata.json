@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "czapi.client",
+      "type": "com.cz.czapiclientsdk.CzApiClientConfig",
+      "sourceType": "com.cz.czapiclientsdk.CzApiClientConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "czapi.client.access-key",
+      "type": "java.lang.String",
+      "sourceType": "com.cz.czapiclientsdk.CzApiClientConfig"
+    },
+    {
+      "name": "czapi.client.secret-key",
+      "type": "java.lang.String",
+      "sourceType": "com.cz.czapiclientsdk.CzApiClientConfig"
+    }
+  ],
+  "hints": []
+}

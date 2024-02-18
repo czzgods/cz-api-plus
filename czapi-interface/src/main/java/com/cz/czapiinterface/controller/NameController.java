@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/name")
 public class NameController {
-    @PostMapping("/user")
+    @PostMapping("/api/name/user")
     public String getUserNameByPost(@RequestBody User user, HttpServletRequest request){
         return  "POST 你的用户名字是：" + user.getUserName();
     }

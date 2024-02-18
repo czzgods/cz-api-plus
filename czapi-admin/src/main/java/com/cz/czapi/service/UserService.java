@@ -3,6 +3,7 @@ package com.cz.czapi.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cz.czapicommon.model.entity.User;
+import com.cz.czapicommon.model.vo.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -63,4 +64,12 @@ public interface UserService extends IService<User> {
      * @return
      */
     boolean updateSecretKey(Long id);
+
+    /**
+     * 获取脱敏的用户信息
+     *
+     * @param user
+     * @return
+     */
+    UserVO getUserVO(User user);
 }

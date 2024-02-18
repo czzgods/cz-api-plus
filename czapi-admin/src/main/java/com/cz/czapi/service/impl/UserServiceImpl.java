@@ -11,8 +11,10 @@ import com.cz.czapi.mapper.UserMapper;
 import com.cz.czapi.service.UserService;
 import com.cz.czapicommon.common.ErrorCode;
 import com.cz.czapicommon.model.entity.User;
+import com.cz.czapicommon.model.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
@@ -175,6 +177,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         user.setAccessKey(accessKey);
         user.setSecretKey(secretKey);
         return this.updateById(user);
+    }
+
+    @Override
+    public UserVO getUserVO(User user) {
+        if (user == null) {
+            return null;
+        }
+        UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(user, userVO);
+        return userVO;
     }
 
 }

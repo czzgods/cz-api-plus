@@ -3,9 +3,12 @@ package com.cz.czapi.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
+import com.cz.czapi.annotation.AuthCheck;
 import com.cz.czapi.exception.BusinessException;
+import com.cz.czapi.exception.ThrowUtils;
 import com.cz.czapi.service.UserService;
 import com.cz.czapicommon.common.*;
+import com.cz.czapicommon.constant.UserConstant;
 import com.cz.czapicommon.model.dto.user.*;
 import com.cz.czapicommon.model.entity.User;
 import com.cz.czapicommon.model.vo.UserVO;
@@ -163,23 +166,36 @@ public class UserController {
     }
 
     /**
-     * 根据 id 获取用户
+     * 根据 id 获取用户（仅管理员）
      *
      * @param id
      * @param request
      * @return
      */
     @GetMapping("/get")
-    public BaseResponse<UserVO> getUserById(int id, HttpServletRequest request) {
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<User> getUserById(long id, HttpServletRequest request) {
         if (id <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         User user = userService.getById(id);
-        UserVO userVO = new UserVO();
-        BeanUtils.copyProperties(user, userVO);
-        return ResultUtils.success(userVO);
+        ThrowUtils.throwIf(user == null, ErrorCode.NOT_FOUND_ERROR);
+        return ResultUtils.success(user);
     }
 
+    /**
+     * 根据 id 获取包装类
+     *
+     * @param id
+     * @param request
+     * @return
+     */
+    @GetMapping("/get/vo")
+    public BaseResponse<UserVO> getUserVOById(long id, HttpServletRequest request){
+        BaseResponse<User> response = getUserById(id, request);
+        User user = response.getData();
+        return ResultUtils.success(userService.getUserVO(user));
+    }
     /**
      * 获取用户列表
      *

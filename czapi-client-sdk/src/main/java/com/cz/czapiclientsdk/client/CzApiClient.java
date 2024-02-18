@@ -7,6 +7,7 @@ import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.json.JSONUtil;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,8 +50,8 @@ public class CzApiClient {
      /*header("Accept-Charset", CharsetUtil.UTF_8)//设置请求头中的 "Accept-Charset" 字段，
      指定客户端所能接受的字符集编码格式。在这里，它指定客户端能够接受的字符集编码为 UTF-8，
      这意味着客户端期望响应使用 UTF-8 编码格式进行字符编码。*/
-    public String invokeInterface(String params,String url,String method){
-        HttpResponse response = HttpRequest.post(GATEWAY_HOST + url)
+    public String invokeInterface(String params,String url,String method) throws UnsupportedEncodingException {
+        HttpResponse response = HttpRequest.post("http://localhost:8123"+url)
                 .header("Accept-Charset", CharsetUtil.UTF_8)
                 .addHeaders(getHeaderMap(params, method))
                 .body(params)
@@ -71,7 +72,7 @@ public class CzApiClient {
      * @param method
      * @return
      */
-    private Map<String, String> getHeaderMap(String params, String method) {
+    private Map<String, String> getHeaderMap(String params, String method) throws UnsupportedEncodingException{
         Map<String,String> map = new HashMap<>();
         map.put("accessKey",accessKey);
         map.put("nonce", RandomUtil.randomNumbers(10));

@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.cz</groupId>
-    <artifactId>czapi-client-sdk</artifactId>
+    <artifactId>cz-client-sdk</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>czapi-client-sdk</name>
+    <name>cz-client-sdk</name>
     <description>czapi-client-sdk</description>
     <properties>
         <java.version>1.8</java.version>

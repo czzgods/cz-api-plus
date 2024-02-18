@@ -25,7 +25,7 @@
     <name>cz-api-backend</name>
 
     <properties>
-        <nero-api.version>0.0.1</nero-api.version>
+        <cz-api.version>0.0.1</cz-api.version>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-cloud.version>2021.0.7</spring-cloud.version>
@@ -56,6 +56,20 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <!--客户端模块-->
+            <dependency>
+                <groupId>com.cz</groupId>
+                <artifactId>czapi-admin</artifactId>
+                <version>${cz-api.version}</version>
+            </dependency>
+            <!--网关模块-->
+
+            <!--通用模块-->
+            <dependency>
+                <groupId>com.cz</groupId>
+                <artifactId>czapi-common</artifactId>
+                <version>${cz-api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

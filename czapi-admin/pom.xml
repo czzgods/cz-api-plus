@@ -17,7 +17,11 @@
     </properties>
     <dependencies>
         <!--czApi SDK-->
-
+        <dependency>
+            <groupId>com.cz</groupId>
+            <artifactId>czapi-client-sdk</artifactId>
+            <version>0.0.1</version>
+        </dependency>
         <!--czApi common-->
         <dependency>
             <groupId>com.cz</groupId>

@@ -3,6 +3,7 @@ package com.cz.czapi.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cz.czapicommon.model.entity.User;
+import com.cz.czapicommon.model.vo.LoginUserVO;
 import com.cz.czapicommon.model.vo.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +33,7 @@ public interface UserService extends IService<User> {
      * @param request
      * @return 脱敏后的用户信息
      */
-    User userLogin(String userAccount, String userPassword, HttpServletRequest request);
+    LoginUserVO userLogin(String userAccount, String userPassword, HttpServletRequest request);
 
     /**
      * 获取当前登录用户
@@ -72,4 +73,10 @@ public interface UserService extends IService<User> {
      * @return
      */
     UserVO getUserVO(User user);
+    /**
+     * 获取脱敏的已登录用户信息
+     *
+     * @return
+     */
+    LoginUserVO getLoginUserVO(User user);
 }

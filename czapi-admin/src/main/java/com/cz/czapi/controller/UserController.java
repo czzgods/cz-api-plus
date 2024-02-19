@@ -11,6 +11,7 @@ import com.cz.czapicommon.common.*;
 import com.cz.czapicommon.constant.UserConstant;
 import com.cz.czapicommon.model.dto.user.*;
 import com.cz.czapicommon.model.entity.User;
+import com.cz.czapicommon.model.vo.LoginUserVO;
 import com.cz.czapicommon.model.vo.UserVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -64,7 +65,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/login")
-    public BaseResponse<User> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
+    public BaseResponse<LoginUserVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
         if (userLoginRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -73,8 +74,8 @@ public class UserController {
         if (StringUtils.isAnyBlank(userAccount, userPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User user = userService.userLogin(userAccount, userPassword, request);
-        return ResultUtils.success(user);
+        LoginUserVO loginUserVO = userService.userLogin(userAccount, userPassword, request);
+        return ResultUtils.success(loginUserVO);
     }
 
     /**
@@ -99,11 +100,11 @@ public class UserController {
      * @return
      */
     @GetMapping("/get/login")
-    public BaseResponse<UserVO> getLoginUser(HttpServletRequest request) {
+    public BaseResponse<LoginUserVO> getLoginUser(HttpServletRequest request) {
         User user = userService.getLoginUser(request);
-        UserVO userVO = new UserVO();
-        BeanUtils.copyProperties(user, userVO);
-        return ResultUtils.success(userVO);
+       /* UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(user, userVO);*/
+        return ResultUtils.success(userService.getLoginUserVO(user));
     }
 
     // endregion
@@ -162,7 +163,8 @@ public class UserController {
         User user = new User();
         BeanUtils.copyProperties(userUpdateRequest, user);
         boolean result = userService.updateById(user);
-        return ResultUtils.success(result);
+        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+        return ResultUtils.success(true);
     }
 
     /**

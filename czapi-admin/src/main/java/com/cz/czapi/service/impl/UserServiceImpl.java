@@ -11,6 +11,7 @@ import com.cz.czapi.mapper.UserMapper;
 import com.cz.czapi.service.UserService;
 import com.cz.czapicommon.common.ErrorCode;
 import com.cz.czapicommon.model.entity.User;
+import com.cz.czapicommon.model.vo.LoginUserVO;
 import com.cz.czapicommon.model.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -89,7 +90,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     }
 
     @Override
-    public User userLogin(String userAccount, String userPassword, HttpServletRequest request) {
+    public LoginUserVO userLogin(String userAccount, String userPassword, HttpServletRequest request) {
         // 1. 校验
         if (StringUtils.isAnyBlank(userAccount, userPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "参数为空");
@@ -114,7 +115,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         }
         // 3. 记录用户的登录态
         request.getSession().setAttribute(USER_LOGIN_STATE, user);
-        return user;
+        return this.getLoginUserVO(user);
     }
 
     /**
@@ -187,6 +188,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         UserVO userVO = new UserVO();
         BeanUtils.copyProperties(user, userVO);
         return userVO;
+    }
+
+    @Override
+    public LoginUserVO getLoginUserVO(User user) {
+        if (user == null) {
+            return null;
+        }
+        LoginUserVO loginUserVO = new LoginUserVO();
+        BeanUtils.copyProperties(user, loginUserVO);
+        return loginUserVO;
     }
 
 }

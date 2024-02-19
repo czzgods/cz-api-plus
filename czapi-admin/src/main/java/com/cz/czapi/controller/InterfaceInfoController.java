@@ -267,6 +267,7 @@ public class InterfaceInfoController {
         String url = oldInterfaceInfo.getUrl();
         String method = oldInterfaceInfo.getMethod();
         String requestParams = interfaceInfoInvokeRequest.getRequestParams();
+        //requestParams = "{\n \"username\":\"nero\" \n}";
         // 获取SDK客户端
         CzApiClient czApiClient = interfaceInfoService.getCzApiClient(request);
         /*// 设置网关地址

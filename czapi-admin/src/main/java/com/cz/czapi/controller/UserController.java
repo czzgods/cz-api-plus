@@ -199,26 +199,20 @@ public class UserController {
         return ResultUtils.success(userService.getUserVO(user));
     }
     /**
-     * 获取用户列表
+     * 分页获取用户列表（仅管理员）
      *
      * @param userQueryRequest
      * @param request
      * @return
      */
-    @GetMapping("/list")
-    public BaseResponse<List<UserVO>> listUser(UserQueryRequest userQueryRequest, HttpServletRequest request) {
-        User userQuery = new User();
-        if (userQueryRequest != null) {
-            BeanUtils.copyProperties(userQueryRequest, userQuery);
-        }
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>(userQuery);
-        List<User> userList = userService.list(queryWrapper);
-        List<UserVO> userVOList = userList.stream().map(user -> {
-            UserVO userVO = new UserVO();
-            BeanUtils.copyProperties(user, userVO);
-            return userVO;
-        }).collect(Collectors.toList());
-        return ResultUtils.success(userVOList);
+    @GetMapping("/list/page")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<Page<User>> listUser(UserQueryRequest userQueryRequest, HttpServletRequest request) {
+            long current = userQueryRequest.getCurrent();
+            long size = userQueryRequest.getPageSize();
+            Page<User> userPage = userService.page(new Page<>(current, size),
+                    userService.getQueryWrapper(userQueryRequest));
+            return ResultUtils.success(userPage);
     }
 
     /**
@@ -228,7 +222,7 @@ public class UserController {
      * @param request
      * @return
      */
-    @GetMapping("/list/page")
+    @GetMapping("/list/page/vo")
     public BaseResponse<Page<UserVO>> listUserByPage(UserQueryRequest userQueryRequest, HttpServletRequest request) {
         long current = 1;
         long size = 10;

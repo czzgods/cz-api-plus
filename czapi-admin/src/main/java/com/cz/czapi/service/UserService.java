@@ -1,7 +1,9 @@
 package com.cz.czapi.service;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.cz.czapicommon.model.dto.user.UserQueryRequest;
 import com.cz.czapicommon.model.entity.User;
 import com.cz.czapicommon.model.vo.LoginUserVO;
 import com.cz.czapicommon.model.vo.UserVO;
@@ -79,4 +81,12 @@ public interface UserService extends IService<User> {
      * @return
      */
     LoginUserVO getLoginUserVO(User user);
+
+    /**
+     * 获取查询条件
+     *
+     * @param userQueryRequest
+     * @return
+     */
+    QueryWrapper<User> getQueryWrapper(UserQueryRequest userQueryRequest);
 }

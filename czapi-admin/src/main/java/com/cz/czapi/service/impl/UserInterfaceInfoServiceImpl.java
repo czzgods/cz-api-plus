@@ -92,6 +92,11 @@ public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoM
         interfaceInfoVOPage.setRecords(userInterfaceInfoList);
         return interfaceInfoVOPage;
     }
+
+    @Override
+    public List<UserInterfaceInfo> listTopInvokeInterfaceInfo(int limit) {
+        return userInterfaceInfoMapper.listTopInvokeInterfaceInfo(limit);
+    }
 }
 
 

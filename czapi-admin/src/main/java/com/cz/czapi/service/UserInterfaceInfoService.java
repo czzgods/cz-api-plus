@@ -8,6 +8,7 @@ import com.cz.czapicommon.model.dto.userinterfaceinfo.UserInterfaceInfoQueryRequ
 import com.cz.czapicommon.model.entity.UserInterfaceInfo;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
 * @author 李钟意
@@ -39,4 +40,12 @@ public interface UserInterfaceInfoService extends IService<UserInterfaceInfo> {
      * @return
      */
     Page<UserInterfaceInfo> getUserInterfaceInfoVOPage(Page<UserInterfaceInfo> userInterfaceInfoPage, HttpServletRequest request);
+
+    /**
+     * 获取接口调用排名前 n 的接口信息
+     *
+     * @param limit 前几名
+     * @return List<InterfaceInfoVO>
+     */
+    List<UserInterfaceInfo> listTopInvokeInterfaceInfo(int limit);
 }

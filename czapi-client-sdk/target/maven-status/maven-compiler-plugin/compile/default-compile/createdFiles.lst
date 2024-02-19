@@ -1,5 +1,5 @@
 com\cz\czapiclientsdk\client\CzApiClient.class
 com\cz\czapiclientsdk\utils\SignUtils.class
-com\cz\czapiclientsdk\model\User.class
 com\cz\czapiclientsdk\CzApiClientConfig.class
+com\cz\czapiclientsdk\model\User.class
 META-INF\spring-configuration-metadata.json

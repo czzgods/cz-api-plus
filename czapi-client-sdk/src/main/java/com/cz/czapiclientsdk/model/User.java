@@ -9,7 +9,7 @@ public class User {
     /**
      * 用户名
      */
-    private String userName;
+    private String username;
     /**
      * 主机号
      */

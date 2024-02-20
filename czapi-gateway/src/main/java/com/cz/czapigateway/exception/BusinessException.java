@@ -1,15 +1,16 @@
-package com.cz.czapi.exception;
-
+package com.cz.czapigateway.exception;
 
 import com.cz.czapicommon.common.ErrorCode;
 
 /**
  * 自定义异常类
  *
- * @author cz
  */
 public class BusinessException extends RuntimeException {
 
+    /**
+     * 错误码
+     */
     private final int code;
 
     public BusinessException(int code, String message) {

@@ -13,6 +13,12 @@
     <packaging>jar</packaging>
     <description>服务网关</description>
     <dependencies>
+        <!-- Spring Boot Configuration Processor-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!--czApi SDK-->
         <dependency>
             <groupId>com.cz</groupId>

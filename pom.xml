@@ -65,7 +65,11 @@
                 <version>${cz-api.version}</version>
             </dependency>
             <!--网关模块-->
-
+            <dependency>
+                <groupId>com.cz</groupId>
+                <artifactId>czapi-gateway</artifactId>
+                <version>${cz-api.version}</version>
+            </dependency>
             <!--通用模块-->
             <dependency>
                 <groupId>com.cz</groupId>

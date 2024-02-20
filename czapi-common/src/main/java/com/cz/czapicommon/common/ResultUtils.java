@@ -2,11 +2,8 @@ package com.cz.czapicommon.common;
 
 /**
  * 返回工具类
- *
- * @author yupi
  */
 public class ResultUtils {
-
     /**
      * 成功
      *
@@ -48,4 +45,30 @@ public class ResultUtils {
     public static BaseResponse error(ErrorCode errorCode, String message) {
         return new BaseResponse(errorCode.getCode(), null, message);
     }
+
+    public static <T> BaseResponse<T> dataOk(T data) {
+        return new BaseResponse<T>(0 , data,"success");
+    }
+
+
+    public static <T> BaseResponse<T> fail() {
+        return new BaseResponse<T>(50001, "system error");
+    }
+
+    public static <T> BaseResponse<T> fail(ErrorCode errorCode) {
+        return new BaseResponse<T>(errorCode.getCode(), errorCode.getMessage());
+    }
+
+    public static <T> BaseResponse<T> fail(T data, String message) {
+        return new BaseResponse<T>(50001, data, message);
+    }
+
+    public static <T> BaseResponse<T> fail(int code, String message) {
+        return new BaseResponse<T>(code, null, message);
+    }
+
+    public static <T> BaseResponse<T> fail(String message) {
+        return new BaseResponse<T>(50000, null, message);
+    }
+
 }

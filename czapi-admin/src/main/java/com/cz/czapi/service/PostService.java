@@ -5,7 +5,7 @@ import com.cz.czapicommon.model.entity.Post;
 
 
 /**
- * @author yupili
+ * @author czli
  * @description 针对表【post(帖子)】的数据库操作Service
  */
 public interface PostService extends IService<Post> {

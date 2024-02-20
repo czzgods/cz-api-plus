@@ -51,7 +51,7 @@ public class CzApiClient {
      指定客户端所能接受的字符集编码格式。在这里，它指定客户端能够接受的字符集编码为 UTF-8，
      这意味着客户端期望响应使用 UTF-8 编码格式进行字符编码。*/
     public String invokeInterface(String params,String url,String method) throws UnsupportedEncodingException {
-        HttpResponse response = HttpRequest.post("http://localhost:8123"+url)
+        HttpResponse response = HttpRequest.post(GATEWAY_HOST+url)
                 .header("Accept-Charset", CharsetUtil.UTF_8)
                 .addHeaders(getHeaderMap(params, method))
                 .body(params)

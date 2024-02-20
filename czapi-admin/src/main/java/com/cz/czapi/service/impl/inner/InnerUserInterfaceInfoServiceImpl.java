@@ -6,9 +6,11 @@ import com.cz.czapi.service.UserService;
 import com.cz.czapicommon.common.ErrorCode;
 import com.cz.czapicommon.model.entity.UserInterfaceInfo;
 import com.cz.czapicommon.service.InnerUserInterfaceInfoService;
+import org.apache.dubbo.config.annotation.DubboService;
 
 import javax.annotation.Resource;
 
+@DubboService
 public class InnerUserInterfaceInfoServiceImpl implements InnerUserInterfaceInfoService {
     @Resource
     private UserInterfaceInfoService userInterfaceInfoService;

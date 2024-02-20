@@ -5,6 +5,7 @@ import cn.hutool.json.JSONUtil;
 import com.alibaba.excel.util.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cz.czapi.annotation.AuthCheck;
+import com.cz.czapi.config.GatewayConfig;
 import com.cz.czapi.exception.BusinessException;
 import com.cz.czapi.exception.ThrowUtils;
 import com.cz.czapi.service.InterfaceInfoService;
@@ -44,8 +45,8 @@ public class InterfaceInfoController {
     @Resource
     private UserService userService;
 
-   /* @Resource
-    private GatewayConfig gatewayConfig;*/
+    @Resource
+    private GatewayConfig gatewayConfig;
 
     // region 增删改查
 
@@ -270,8 +271,8 @@ public class InterfaceInfoController {
         //requestParams = "{\n \"username\":\"nero\" \n}";
         // 获取SDK客户端
         CzApiClient czApiClient = interfaceInfoService.getCzApiClient(request);
-        /*// 设置网关地址
-        neroApiClient.setGatewayHost(gatewayConfig.getHost());*/
+        // 设置网关地址
+        czApiClient.setGatewayHost(gatewayConfig.getHost());
         String invokeResult = null;
         try {
             invokeResult = czApiClient.invokeInterface(requestParams, url, method);

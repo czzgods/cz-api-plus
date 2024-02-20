@@ -2,6 +2,7 @@ package com.cz.czapi.exception;
 
 import com.cz.czapicommon.common.BaseResponse;
 import com.cz.czapicommon.common.ErrorCode;
+import com.cz.czapicommon.common.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

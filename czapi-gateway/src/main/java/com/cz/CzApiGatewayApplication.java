@@ -17,6 +17,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class CzApiGatewayApplication {
     public static void main(String[] args) {
-        SpringApplication.run(CzApiGatewayApplication.class,args);
+        SpringApplication.run(CzApiGatewayApplication.class, args);
     }
 }

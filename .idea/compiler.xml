@@ -9,6 +9,7 @@
         <module name="czapi-common" />
         <module name="czapi-interface" />
         <module name="czapi-admin" />
+        <module name="czapi-gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
@@ -19,6 +20,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="czapi-admin" options="-parameters" />
       <module name="czapi-common" options="-parameters" />
+      <module name="czapi-gateway" options="-parameters" />
       <module name="czapi-interface" options="-parameters" />
     </option>
   </component>

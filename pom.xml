@@ -9,6 +9,7 @@
         <module>czapi-admin</module>
         <module>czapi-common</module>
         <module>czapi-interface</module>
+        <module>czapi-gateway</module>
     </modules>
 
 

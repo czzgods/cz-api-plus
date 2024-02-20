@@ -40,18 +40,52 @@ public class InnerUserInterfaceInfoServiceImpl implements InnerUserInterfaceInfo
                 .update();
     }
 
+    /**
+     * 判断是否还有调用次数,用户是否拥有该接口
+     * 可以从返回的UserInterfaceInfo对象里取出来调用次数并判断有没有
+     * @param interfaceId 接口id
+     * @param userId      用户id
+     * @return
+     */
     @Override
     public UserInterfaceInfo hasLeftNum(Long interfaceId, Long userId) {
-        return null;
+        return userInterfaceInfoService.lambdaQuery()
+                .eq(UserInterfaceInfo::getInterfaceInfoId,interfaceId)
+                .eq(UserInterfaceInfo::getUserId,userId)
+                .one();
     }
 
+    /**
+     * 添加默认的用户接口信息
+     *
+     * @param interfaceId 接口id
+     * @param userId      用户id
+     * @return Boolean 是否添加成功
+     */
     @Override
     public Boolean addDefaultUserInterfaceInfo(Long interfaceId, Long userId) {
-        return null;
+        UserInterfaceInfo userInterfaceInfo = new UserInterfaceInfo();
+        userInterfaceInfo.setUserId(userId);
+        userInterfaceInfo.setInterfaceInfoId(interfaceId);
+        userInterfaceInfo.setLeftNum(99999999);
+        return userInterfaceInfoService.save(userInterfaceInfo);
     }
 
+    /**
+     * 检查用户是否有接口
+     *
+     * @param interfaceId 接口id
+     * @param userId     用户id
+     * @return UserInterfaceInfo 用户接口信息
+     */
     @Override
     public UserInterfaceInfo checkUserHasInterface(long interfaceId, long userId) {
-        return null;
+        if(userId <= 0 || interfaceId <= 0){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        return userInterfaceInfoService.lambdaQuery()
+                .eq(UserInterfaceInfo::getInterfaceInfoId,interfaceId)
+                .eq(UserInterfaceInfo::getUserId,userId)
+                .one();
     }
 }

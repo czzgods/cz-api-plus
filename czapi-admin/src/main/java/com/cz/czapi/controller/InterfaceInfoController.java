@@ -8,6 +8,7 @@ import com.cz.czapi.annotation.AuthCheck;
 import com.cz.czapi.config.GatewayConfig;
 import com.cz.czapi.exception.BusinessException;
 import com.cz.czapi.exception.ThrowUtils;
+import com.cz.czapi.manager.RedisLimiterManager;
 import com.cz.czapi.service.InterfaceInfoService;
 import com.cz.czapi.service.UserService;
 import com.cz.czapiclientsdk.client.CzApiClient;
@@ -47,6 +48,8 @@ public class InterfaceInfoController {
 
     @Resource
     private GatewayConfig gatewayConfig;
+    @Resource
+    private RedisLimiterManager redisLimiterManager;
 
     // region 增删改查
 
@@ -264,6 +267,9 @@ public class InterfaceInfoController {
         if (oldInterfaceInfo.getStatus().equals(InterfaceInfoStatusEnum.OFFLINE.getValue())) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "接口已关闭");
         }
+        User loginUser = userService.getLoginUser(request);
+        //进行限流
+        redisLimiterManager.doRateLimit("invokeInterface:"+String.valueOf(loginUser.getId()));
         // 接口请求地址
         String url = oldInterfaceInfo.getUrl();
         String method = oldInterfaceInfo.getMethod();
